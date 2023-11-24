@@ -1,0 +1,305 @@
+*, ::after, ::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body, html{
+	height: 100%;
+	font-size: 14px;
+	font-family: Arial, sans-serif;
+	color: var(--text);
+	& a {
+		color: var(--text);
+	}
+	
+}
+
+:root {
+	--bg-main: #f4f4f4;
+	--bg-second: #fff;
+	--text: #000;
+	--color-main: #000;
+	--color-second: #666;
+	--border-color: rgba(36, 36, 36, 0.1);
+	--hover-color: rgba(112, 117, 121, 0.1);
+	--blue: #006eff;
+}
+
+:root[data-theme='dark'] {
+	--bg-main: #222327;
+	--bg-second:#303238;
+	--text: #eee;
+	--color-main: #6d6e77;
+	--color-second: #c5c5d2;
+	--border-color: #3e3f42;
+	--hover-color: #3e3f42;
+	--blue: #006eff;
+}
+
+span {
+	user-select: none;
+	pointer-events: none;
+}
+
+.container {
+	display: flex;
+	height: 100%;
+}
+
+#menuSlider {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	width: 220px;
+	background-color: var(--bg-second);
+	overflow: hidden;
+	border-right: var(--border-color) 1px solid;
+
+	transition: .3s;
+}
+
+#menuSlider a {
+	display: flex;
+
+	padding: 1rem 1.5rem;
+	text-decoration: none;
+
+	color: var(--text);
+
+	transition: background-color 0.3s;
+}
+
+#menuSlider a svg {
+	fill: var(--color-second);
+	flex-shrink: 0;
+	margin-right: 1rem;
+}
+
+#menuSlider a:hover {
+	background-color: var(--hover-color);
+	box-shadow: inset 3px 0px 0px 0px #006eff;
+}
+
+#menuSlider.active {
+	z-index: 5;
+	& label {
+		display: none;
+	}
+}
+
+#menuSlider a.active {
+	box-shadow: inset 3px 0px 0px 0px #006eff;
+}
+#menuSlider a.active svg {
+	fill: var(--text);
+}
+
+#menuSlider.active #toggleButton{
+	left: 10rem;
+	transform: rotate(180deg);
+	padding: 0;
+	z-index: -1;
+}
+
+#menuSlider.active .theme {
+	display: none;
+}
+
+#main {
+	flex-grow: 1;
+	background-color: var(--bg-main);
+	overflow-y: auto;
+}
+
+#header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	position: sticky;
+	top: 0;
+
+	border-bottom: var(--border-color) 1px solid;
+	background-color: var(--bg-second);
+
+	height: 4rem;
+}
+
+.search {
+	display: flex;
+	align-items: center;
+	
+	padding: .5rem 1rem;
+	margin-left: 1.5rem;
+	border-radius: .5rem;
+
+	color: var(--color-second);
+	background-color: var(--bg-main);
+	max-width: 100px;
+
+	transition: .3s;
+	cursor: pointer;
+
+	& input {
+		display: none;
+		border: none;
+		background: transparent;
+
+		color: var(--color-second);
+
+		white-space: nowrap;
+	}
+	& svg {
+		flex-shrink: 0;
+		transition: .3s;
+		fill:var(--color-second)
+	}
+}
+
+.search.active {
+	max-width: 200px;
+	background: var(--hover-color);
+	& label {
+		display: none;
+	}
+	& input {
+		display: block;
+		caret-color: var(--text);
+	}
+}
+
+.search input:focus {
+	outline: none;
+}
+
+.theme svg, .search svg {
+	margin-right: .5rem;
+}
+
+#toggleButton:hover, .search:hover, .settings:hover, .theme:hover {
+	color: var(--text);
+	border-radius: .5rem;
+	background-color: var(--hover-color);
+	& svg {
+		fill: var(--text);
+	}
+}
+
+.links {
+	font-weight: 600;
+	text-align: center;
+}
+
+.spacer {
+	width: 100px;
+}
+
+#content {
+	word-break: break-all;
+	margin: 1.5rem;
+}
+
+#toggleButton, .settings, .theme {
+	color: var(--color-main);
+	display: flex;
+	
+	padding: .5rem;
+	
+	transition: .3s;
+	cursor: pointer;
+
+	& svg {
+		fill: var(--color-main);
+	}
+}
+
+#logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	font-size: 12px;
+	font-weight: 600;
+	& label {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+#logo svg {
+	width: 30px !important;
+	height: 30px !important;
+}
+
+.menu-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 4rem;
+	margin: 0 0.9rem 0.9rem 0.9rem;
+	border-bottom: 1px solid var(--border-color);
+}
+
+.logo-wrapper, 
+.toggle-wrapper {
+	display: flex;
+	align-items: center;
+}
+
+.logo-svg {
+	width: 25px;
+	height: 25px;
+	margin-right: 2rem;
+	flex-shrink: 1;
+}
+
+.toggle-svg {
+	width: 16px;
+	height: 16px;
+}
+
+.logo-wrapper label {
+	font-size: 12px;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.menu-footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	height: 4rem;
+}
+
+.menu-footer {
+	margin: 0 .9rem;
+	border-top: 1px solid var(--border-color);
+}
+
+
+/* Медиа-запрос для маленьких экранов */
+@media screen and (max-width: 768px) {
+	.theme {
+		display: none;
+	}
+	#menuSlider {
+		width: 56px;
+		z-index: 5;
+		& label {
+			display: none;
+		}
+	}
+	
+	#toggleButton{
+		left: 10rem;
+		transform: rotate(180deg);
+		padding: 0;
+		z-index: -1;
+	}
+}
